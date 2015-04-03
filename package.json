@@ -1,0 +1,31 @@
+{
+  "name": "rspec-to-conclusion",
+  "version": "1.0.0",
+  "description": "cli for running rspec to conclusion",
+  "bin": {
+    "rspec-to-conclusion": "./bin/rspec-to-conclusion"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run-script lint && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jedcn/rspec-to-conclusion.git"
+  },
+  "keywords": [
+    "cli",
+    "rspec"
+  ],
+  "author": "Jed Northridge",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jedcn/rspec-to-conclusion/issues"
+  },
+  "homepage": "https://github.com/jedcn/rspec-to-conclusion",
+  "dependencies": {
+    "gfm-table": "^0.1.0",
+    "shelljs": "^0.4.0",
+    "underscore": "^1.8.3"
+  }
+}
