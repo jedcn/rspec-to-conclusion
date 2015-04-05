@@ -1,0 +1,102 @@
+{
+  "examples": [
+    {
+      "description": "fails",
+      "full_description": "always fail fails",
+      "status": "pending",
+      "file_path": "./spec/always_fail_spec.rb",
+      "line_number": 2,
+      "run_time": 0.000031
+    },
+    {
+      "description": "and fails",
+      "full_description": "always fail and fails",
+      "status": "pending",
+      "file_path": "./spec/always_fail_spec.rb",
+      "line_number": 6,
+      "run_time": 0.000005
+    },
+    {
+      "description": "passes",
+      "full_description": "always pass passes",
+      "status": "passed",
+      "file_path": "./spec/always_pass_spec.rb",
+      "line_number": 2,
+      "run_time": 0.000467
+    },
+    {
+      "description": "and passes",
+      "full_description": "always pass and passes",
+      "status": "passed",
+      "file_path": "./spec/always_pass_spec.rb",
+      "line_number": 6,
+      "run_time": 0.000051
+    },
+    {
+      "description": "fails sometimes",
+      "full_description": "flakey fails sometimes",
+      "status": "failed",
+      "file_path": "./spec/flakey_spec.rb",
+      "line_number": 2,
+      "run_time": 0.001089,
+      "exception": {
+        "class": "RSpec::Expectations::ExpectationNotMetError",
+        "message": "expected: < 7\n     got:   9",
+        "backtrace": [
+          "/opt/rubies/2.1.2/lib/ruby/whatever",
+          "/opt/boxen/rbenv/versions/2.1.2/bin/rspec:23:in `load'",
+          "/opt/boxen/rbenv/versions/2.1.2/bin/rspec:23:in `<main>'"
+        ]
+      }
+    },
+    {
+      "description": "fails every once in awhile",
+      "full_description": "flakey fails every once in awhile",
+      "status": "passed",
+      "file_path": "./spec/flakey_spec.rb",
+      "line_number": 6,
+      "run_time": 0.000066
+    },
+    {
+      "description": "fails often",
+      "full_description": "really flakey fails often",
+      "status": "failed",
+      "file_path": "./spec/really_flakey_spec.rb",
+      "line_number": 2,
+      "run_time": 0.000067,
+      "exception": {
+        "class": "RSpec::Expectations::ExpectationNotMetError",
+        "message": "expected: < 5\n     got:   7",
+        "backtrace": [
+          "/opt/rubies/2.1.2/lib/ruby/whatever",
+          "/opt/boxen/rbenv/versions/2.1.2/bin/rspec:23:in `load'",
+          "/opt/boxen/rbenv/versions/2.1.2/bin/rspec:23:in `<main>'"
+        ]
+      }
+    },
+    {
+      "description": "fails quite often",
+      "full_description": "really flakey fails quite often",
+      "status": "failed",
+      "file_path": "./spec/really_flakey_spec.rb",
+      "line_number": 6,
+      "run_time": 0.000074,
+      "exception": {
+        "class": "RSpec::Expectations::ExpectationNotMetError",
+        "message": "expected: < 2\n     got:   2",
+        "backtrace": [
+          "/opt/rubies/2.1.2/lib/ruby/whatever",
+          "/opt/boxen/rbenv/versions/2.1.2/bin/rspec:23:in `load'",
+          "/opt/boxen/rbenv/versions/2.1.2/bin/rspec:23:in `<main>'"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "duration": 0.002386,
+    "example_count": 8,
+    "failure_count": 3,
+    "pending_count": 2
+  },
+  "summary_line": "8 examples, 3 failures, 2 pending"
+}
