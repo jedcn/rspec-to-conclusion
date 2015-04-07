@@ -10,28 +10,13 @@ function verifyPreConditions() {
   return ok;
 }
 
-function runSpecs(runNumber, specs) {
-  console.log("DBG: specs='" + specs + "'");
-  var resultsFile = 'results-' + runNumber + '.json';
-  console.log("DBG: resultsFile='" + resultsFile + "'");
-  var command;
-  if (specs && specs.length > 0) {
-    command = 'rspec --format json --out ' + resultsFile + ' ' + specs.join(' ');
-  } else {
-    command = 'rspec --format json --out ' + resultsFile + ' spec';
-  }
-  console.log("DBG: command='" + command + "'");
-  var runFailed = exec(command).code !== 0;
-  var cwd = process.cwd();
-  var parsedResults = require(cwd + '/' + resultsFile);
-  return parsedResults;
-}
+var run = require("../lib/rspec-runner").run;
 
 function runAndSummarize(runNumber, specs) {
   var successes = {},
       failures = {},
       pending = {},
-      results = runSpecs(runNumber, specs);
+      results = run("rspecToConclusion-" + runNumber, specs, exec, require);
 
   _.each(results.examples, function(result) {
     var resultKey = result.file_path + ':' + result.line_number;

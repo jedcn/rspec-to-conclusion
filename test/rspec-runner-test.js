@@ -34,9 +34,14 @@ describe("run", function() {
       assert.ok(execArgs[0].match(/spec\/file1.rb spec\/file2.rb$/));
     });
 
-    it("puts the results in the file of your choosing", function() {
-      run("resultsForRun1.json", [], execStub, requireStub);
-      assert.ok(execArgs[0].match(/resultsForRun1.json/));
+    it("uses the JSON formatter and puts the results in a file", function() {
+      run("resultsForRun1", [], execStub, requireStub);
+      assert.ok(execArgs[0].match(/--format json --out resultsForRun1.json/));
+    });
+
+    it("uses the HTML formatter and puts the results in a file", function() {
+      run("resultsForRun1", [], execStub, requireStub);
+      assert.ok(execArgs[0].match(/--format html --out resultsForRun1.html/));
     });
 
     it("returns what comes back from requiring in the resultsFile", function() {
