@@ -7,7 +7,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "npm run-script lint && mocha"
+    "lint": "./node_modules/eslint/bin/eslint.js bin/rspec-to-conclusion",
+    "lint-and-test": "npm run-script lint && mocha",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -24,8 +26,13 @@
   },
   "homepage": "https://github.com/jedcn/rspec-to-conclusion",
   "dependencies": {
+    "chalk": "^1.0.0",
     "gfm-table": "^0.1.0",
     "shelljs": "^0.4.0",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "eslint": "^0.18.0",
+    "mocha": "^2.2.1"
   }
 }

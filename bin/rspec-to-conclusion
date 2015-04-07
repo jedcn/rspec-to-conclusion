@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-require('shelljs/global');
-var _ = require('underscore');
-
 function verifyPreConditions() {
   var ok = true;
   if (!which('rspec')) {
@@ -13,20 +10,28 @@ function verifyPreConditions() {
   return ok;
 }
 
-function runSpecs(runNumber) {
+function runSpecs(runNumber, specs) {
+  console.log("DBG: specs='" + specs + "'");
   var resultsFile = 'results-' + runNumber + '.json';
-  var command = 'rspec --format json --out ' + resultsFile + ' spec';
+  console.log("DBG: resultsFile='" + resultsFile + "'");
+  var command;
+  if (specs && specs.length > 0) {
+    command = 'rspec --format json --out ' + resultsFile + ' ' + specs.join(' ');
+  } else {
+    command = 'rspec --format json --out ' + resultsFile + ' spec';
+  }
+  console.log("DBG: command='" + command + "'");
   var runFailed = exec(command).code !== 0;
   var cwd = process.cwd();
   var parsedResults = require(cwd + '/' + resultsFile);
   return parsedResults;
 }
 
-function runAndSummarize(runNumber) {
+function runAndSummarize(runNumber, specs) {
   var successes = {},
       failures = {},
       pending = {},
-      results = runSpecs(runNumber);
+      results = runSpecs(runNumber, specs);
 
   _.each(results.examples, function(result) {
     var resultKey = result.file_path + ':' + result.line_number;
@@ -45,35 +50,84 @@ function runAndSummarize(runNumber) {
   };
 }
 
-//
-// Doing the actual run..
-//
+function keyForResult(result) {
+  return result.file_path + ':' + result.line_number;
+}
+
+function runToConclusion() {
+
+  var runResult,
+      runNumber = 1,
+      maximumRuns = 3,
+      successes = {},
+      failures = {},
+      pending = {},
+      keepGoing = true,
+      specsToTryNext = [];
+
+  function handleSuccess(result) {
+    successes[keyForResult(result)] = result;
+    result.successful_on_try = runNumber;
+  }
+
+  function handlePending(result) {
+    pending[keyForResult(result)] = result;
+    result.successful_on_try = null;
+  }
+
+  function handleFailure(result) {
+    failures[keyForResult(result)] = result;
+    specsToTryNext.push(keyForResult(result));
+  }
+
+  for(runNumber = 1; keepGoing && runNumber <= maximumRuns; runNumber++) {
+    console.log('Run #' + runNumber + '..');
+    runResult = runAndSummarize(runNumber, specsToTryNext);
+    failures = {};
+    specsToTryNext = [];
+    _.each(runResult.successes, handleSuccess);
+    _.each(runResult.pending, handlePending);
+    _.each(runResult.failures, handleFailure);
+    if (specsToTryNext.length === 0) {
+      keepGoing = false;
+    }
+  }
+
+  return {
+    successes: successes,
+    failures: failures,
+    pending: pending,
+    totalRuns: runNumber - 1
+  };
+}
+
+function report(result) {
+
+  var table = require('gfm-table'),
+      tableRows = [];
+
+  console.log('');
+  console.log('');
+  tableRows.push(['File Name and Line Number', 'Result', 'Tries']);
+  _.mapObject(result.failures, function(failure, fileNameAndLineNumber) {
+    tableRows.push([fileNameAndLineNumber, 'FAILED', result.totalRuns]);
+  });
+  _.mapObject(result.pending, function(pending, fileNameAndLineNumber) {
+    tableRows.push([fileNameAndLineNumber, 'PENDING', 0]);
+  });
+  _.mapObject(result.successes, function(success, fileNameAndLineNumber) {
+    tableRows.push([fileNameAndLineNumber, 'PASSED', success.successful_on_try]);
+  });
+  console.log(table(tableRows));
+  console.log('');
+  console.log('');
+}
+
+require('shelljs/global');
+var _ = require('underscore');
+
 if (!verifyPreConditions()) {
   exit(1);
 }
-
-var runNumber,
-    maximumRuns = 3;
-
-for(runNumber = 1; runNumber <= maximumRuns; runNumber++) {
-  console.log("RunNumber: " + runNumber);
-  console.log("");
-
-  var runResult = runAndSummarize(runNumber);
-
-  var tableRows = [];
-  tableRows.push(['File Name and Line Number', 'Result', 'Time']);
-
-  _.mapObject(runResult.successes, function(result, fileNameAndLineNumber) {
-    tableRows.push([fileNameAndLineNumber, 'PASSED', result.run_time]);
-  });
-
-  _.mapObject(runResult.failures, function(result, fileNameAndLineNumber) {
-    tableRows.push([fileNameAndLineNumber, 'FAILED', result.run_time]);
-  });
-
-  var table = require('gfm-table');
-  console.log(table(tableRows));
-
-  console.log("");
-}
+var result = runToConclusion();
+report(result);
