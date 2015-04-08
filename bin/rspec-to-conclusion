@@ -10,8 +10,6 @@ function verifyPreConditions() {
   return ok;
 }
 
-var run = require("../lib/rspec-runner").run;
-
 function runAndSummarize(runNumber, specs) {
   var successes = {},
       failures = {},
@@ -86,33 +84,16 @@ function runToConclusion() {
   };
 }
 
-function report(result) {
-
-  var table = require('gfm-table'),
-      tableRows = [];
-
-  console.log('');
-  console.log('');
-  tableRows.push(['File Name and Line Number', 'Result', 'Tries']);
-  _.mapObject(result.failures, function(failure, fileNameAndLineNumber) {
-    tableRows.push([fileNameAndLineNumber, 'FAILED', result.totalRuns]);
-  });
-  _.mapObject(result.pending, function(pending, fileNameAndLineNumber) {
-    tableRows.push([fileNameAndLineNumber, 'PENDING', 0]);
-  });
-  _.mapObject(result.successes, function(success, fileNameAndLineNumber) {
-    tableRows.push([fileNameAndLineNumber, 'PASSED', success.successful_on_try]);
-  });
-  console.log(table(tableRows));
-  console.log('');
-  console.log('');
-}
-
 require('shelljs/global');
-var _ = require('underscore');
+
+var run = require("../lib/rspec-runner").run,
+    report = require("../lib/rspec-reporter").report,
+    table = require("gfm-table"),
+    _ = require('underscore');
 
 if (!verifyPreConditions()) {
   exit(1);
 }
 var result = runToConclusion();
-report(result);
+
+report(result, table, console);
