@@ -1,25 +1,16 @@
 #!/usr/bin/env node
 
-var shelljs = require("shelljs");
-
-function verifyPreConditions() {
-  var ok = true;
-  if (!shelljs.which('rspec')) {
-    console.log('Ack! I can\'t rspec without `rspec`');
-    console.log('Do you see rspec when you type `which rspec`?');
-    ok = false;
-  }
-  return ok;
-}
-
-var report = require("../lib/rspec-reporter").report,
-    table = require("gfm-table"),
-    runToConclusion = require("../lib/rspec-to-conclusion.js").runToConclusion,
-    _ = require('underscore');
+var index = require("../index"),
+    report = index.report,
+    runToConclusion = index.runToConclusion,
+    verifyPreConditions = index.verifyPreConditions;
 
 if (!verifyPreConditions()) {
   exit(1);
 }
+
 var result = runToConclusion();
+
+var table = require("gfm-table");
 
 report(result, table, console);
