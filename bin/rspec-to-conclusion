@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
-var index = require("../index"),
-    report = index.report,
-    runToConclusion = index.runToConclusion,
-    verifyPreConditions = index.verifyPreConditions;
+require("../global");
 
 if (!verifyPreConditions()) {
   exit(1);

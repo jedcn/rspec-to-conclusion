@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js lib/*.js test/*.js # bin/rspec-to-conclusion",
+    "lint": "./node_modules/eslint/bin/eslint.js *.js lib/*.js test/*.js # bin/rspec-to-conclusion",
     "test": "npm run-script lint && mocha"
   },
   "repository": {
