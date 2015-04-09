@@ -1,5 +1,8 @@
-module.exports.report =
-  require("./lib/rspec-reporter").report;
+
+var buildReport = require("./lib/rspec-reporter").buildReport,
+    table = require("gfm-table");
+
+module.exports.report = buildReport(table, console);
 
 module.exports.runToConclusion =
   require("./lib/rspec-to-conclusion").runToConclusion;

@@ -7,7 +7,4 @@ if (!verifyPreConditions()) {
 }
 
 var result = runToConclusion(3);
-
-var table = require("gfm-table");
-
-report(result, table, console);
+report(result);
