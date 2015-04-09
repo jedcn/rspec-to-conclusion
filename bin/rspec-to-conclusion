@@ -6,7 +6,7 @@ if (!verifyPreConditions()) {
   exit(1);
 }
 
-var result = runToConclusion();
+var result = runToConclusion(3);
 
 var table = require("gfm-table");
 
