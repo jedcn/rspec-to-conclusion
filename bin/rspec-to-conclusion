@@ -9,4 +9,4 @@ if (!envOK) {
   exit(1);
 }
 
-report(runToConclusion(args));
+report(rspecToConclusion(args));

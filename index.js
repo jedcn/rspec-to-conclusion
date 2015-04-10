@@ -8,8 +8,8 @@ var buildReport = require("./lib/rspec-reporter").buildReport,
 
 module.exports.report = buildReport(table, console);
 module.exports.verifyEnv = buildVerifyEnv(shelljs.which);
-module.exports.runToConclusion =
-  require("./lib/rspec-to-conclusion").runToConclusion;
+module.exports.rspecToConclusion =
+  require("./lib/rspec-to-conclusion").rspecToConclusion;
 
 (function() {
 
