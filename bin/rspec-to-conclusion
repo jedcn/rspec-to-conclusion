@@ -2,10 +2,11 @@
 
 require("../global");
 
-var envOK = verifyEnv();
+var envOK = verifyEnv(),
+    args = verifyArgs(process.argv);
 
-if (! envOK) {
+if (!envOK) {
   exit(1);
 }
 
-report(runToConclusion(3));
+report(runToConclusion(args));

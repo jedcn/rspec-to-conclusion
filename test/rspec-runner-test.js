@@ -26,8 +26,8 @@ describe("run", function() {
       parseResult = parseArgs = execArgs = null;
     });
 
-    it("runs rspec against 'spec' by default", function() {
-      run("resultsFile");
+    it("can run rspec against the 'spec' directory", function() {
+      run("resultsFile", ["spec"]);
       assert.ok(execArgs[0].match(/^rspec/));
       assert.ok(execArgs[0].match(/spec$/));
     });
@@ -39,23 +39,23 @@ describe("run", function() {
     });
 
     it("uses the JSON formatter and puts the results in a file", function() {
-      run("resultsForRun1");
+      run("resultsForRun1", ["spec"]);
       assert.ok(execArgs[0].match(/--format json --out resultsForRun1.json/));
     });
 
     it("uses the HTML formatter and puts the results in a file", function() {
-      run("resultsForRun1");
+      run("resultsForRun1", ["spec"]);
       assert.ok(execArgs[0].match(/--format html --out resultsForRun1.html/));
     });
 
     it("passes the JSON result file to parse", function() {
-      run("resultsFile");
+      run("resultsFile", ["spec"]);
       assert.ok(parseArgs[0].match(/resultsFile.json/));
     });
 
     it("returns JSON that was put into the resultsFile", function() {
       parseResult = "parseResult";
-      var result = run("resultsFile");
+      var result = run("resultsFile", ["spec"]);
       assert.equal(result, "parseResult");
     });
   });

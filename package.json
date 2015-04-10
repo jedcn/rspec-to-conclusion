@@ -27,6 +27,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "gfm-table": "^0.1.0",
+    "minimist": "^1.1.1",
     "shelljs": "^0.4.0",
     "underscore": "^1.8.3"
   },
