@@ -8,6 +8,7 @@ describe("run", function() {
   describe("#run", function() {
 
     var execArgs,
+        debugArgs,
         parseArgs,
         parseResult;
 
@@ -20,7 +21,11 @@ describe("run", function() {
       return parseResult;
     }
 
-    var run = buildRun(execStub, parseStub);
+    function debugStub() {
+      debugArgs = arguments;
+    }
+
+    var run = buildRun(execStub, parseStub, debugStub);
 
     beforeEach(function() {
       parseResult = parseArgs = execArgs = null;
@@ -36,6 +41,12 @@ describe("run", function() {
       run("resultsFile", ["spec/file1.rb", "spec/file2.rb"]);
       assert.ok(execArgs[0].match(/^rspec/));
       assert.ok(execArgs[0].match(/spec\/file1.rb spec\/file2.rb$/));
+    });
+
+    it("emits debug information about the command being run", function() {
+      run("resultsFile", ["spec"]);
+      assert.ok(debugArgs[0].match(/^running 'rspec/));
+      assert.ok(debugArgs[0].match(/spec'$/));
     });
 
     it("uses the JSON formatter and puts the results in a file", function() {
