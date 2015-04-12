@@ -8,9 +8,10 @@ var buildReport = require("./lib/rspec-reporter").buildReport,
     shelljs = require("shelljs"),
     table = require("gfm-table");
 
+module.exports.exit = shelljs.exit;
 
 module.exports.report = buildReport(table, console);
-module.exports.verifyEnv = buildVerifyEnv(shelljs.which);
+module.exports.verifyEnv = buildVerifyEnv(shelljs.which, console);
 
 var runDebug = require("debug")("run");
 var rspecRunner = require("./lib/rspec-runner").buildRun(shelljs.exec, require, runDebug);
