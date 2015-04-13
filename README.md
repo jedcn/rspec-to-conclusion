@@ -2,6 +2,8 @@
 
 Node based cli for running rspec to conclusion
 
+[![Circle CI](https://circleci.com/gh/jedcn/rspec-to-conclusion.svg?style=svg)](https://circleci.com/gh/jedcn/rspec-to-conclusion)
+
 ## Background
 
 Coming Soon
