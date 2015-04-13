@@ -1,7 +1,8 @@
 var assert = require("assert"),
     testModule = require("../lib/rspec-analysis");
 
-var resultsToProgress = testModule.resultsToProgress;
+var resultsToProgress = testModule.resultsToProgress,
+    mergeProgress = testModule.mergeProgress;
 
 describe("analysis", function() {
 
@@ -44,27 +45,27 @@ describe("analysis", function() {
     ],
     "summary": {
       "duration": 0.002386,
-      "example_count": 8,
-      "failure_count": 3,
-      "pending_count": 2
+      "example_count": 3,
+      "failure_count": 1,
+      "pending_count": 1
     },
-    "summary_line": "8 examples, 3 failures, 2 pending"
+    "summary_line": "3 examples, 1 failures, 1 pending"
   };
 
   describe("#resultsToProgress", function() {
 
     it("creates a matching summaryLine", function() {
       var progress = resultsToProgress(sampleResults, 1);
-      assert.equal(progress.summaryLine, "8 examples, 3 failures, 2 pending");
+      assert.equal(progress.summaryLine, "3 examples, 1 failures, 1 pending");
     });
 
     it("creates a matching summary", function() {
       var progress = resultsToProgress(sampleResults, 1),
           summary = progress.summary;
       assert.equal(Object.keys(summary).length, 4);
-      assert.equal(summary.example_count, 8);
-      assert.equal(summary.failure_count, 3);
-      assert.equal(summary.pending_count, 2);
+      assert.equal(summary.example_count, 3);
+      assert.equal(summary.failure_count, 1);
+      assert.equal(summary.pending_count, 1);
     });
 
     it("creates a map of examples", function() {
@@ -93,6 +94,57 @@ describe("analysis", function() {
     it("populates failingSpecs with a list of specs that failed", function() {
       var progress = resultsToProgress(sampleResults, 1);
       assert.deepEqual(["./spec/flakey_spec.rb:2"], progress.failingSpecs);
+    });
+
+  });
+
+  describe("#mergeProgress", function() {
+
+    var newResults = {
+      "examples": [
+        {
+          "description": "fails sometimes",
+          "full_description": "flakey fails sometimes",
+          "status": "passed",
+          "file_path": "./spec/flakey_spec.rb",
+          "line_number": 2,
+          "run_time": 0.001089
+        }
+      ],
+      "summary": {
+        "duration": 0.002386,
+        "example_count": 1,
+        "failure_count": 0,
+        "pending_count": 0
+      },
+      "summary_line": "1 examples, 0 failures, 0 pending"
+    };
+
+    var existingProgress = resultsToProgress(sampleResults, 1),
+        newProgress = resultsToProgress(newResults, 2);
+
+    it("overwrites existing examples with new examples", function() {
+      var changed = "./spec/flakey_spec.rb:2",
+          result = mergeProgress(existingProgress, newProgress);
+      assert.equal(Object.keys(result.examples).length, 3);
+      assert.equal(result.examples[changed].status, "passed");
+    });
+
+    it("updates failingSpecs with those from the new progress", function() {
+      var result = mergeProgress(existingProgress, newProgress);
+      assert.equal(result.failingSpecs.length, 0);
+    });
+
+    it("updates summaryLine with that from the new progress", function() {
+      var result = mergeProgress(existingProgress, newProgress);
+      assert.equal(result.summaryLine, "1 examples, 0 failures, 0 pending");
+    });
+
+    it("updates the summary with that from the new progress", function() {
+      var result = mergeProgress(existingProgress, newProgress);
+      assert.equal(result.summary.example_count, 1);
+      assert.equal(result.summary.failure_count, 0);
+      assert.equal(result.summary.pending_count, 0);
     });
 
   });
