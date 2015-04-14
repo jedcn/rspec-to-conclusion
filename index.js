@@ -10,7 +10,7 @@ var buildReport = require("./lib/report").buildReport,
 module.exports.exit = shelljs.exit;
 
 module.exports.report = buildReport(table, console);
-module.exports.verifyEnv = buildVerifyEnv(shelljs.which, console);
+module.exports.verifyEnv = buildVerifyEnv(shelljs.which);
 
 var runDebug = require("debug")("run");
 var run = require("./lib/run").buildRun(shelljs.exec, require, runDebug);

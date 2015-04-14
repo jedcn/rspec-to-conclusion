@@ -5,28 +5,21 @@ describe("#verifyEnv", function() {
 
   "use strict";
 
-  var whichArgs, logArgs;
+  var whichArgs;
 
   beforeEach(function() {
     whichArgs = null;
-    logArgs = null;
   });
 
-  var consoleStub = {
-    log: function() {
-      logArgs = arguments;
-    }
-  };
-
-  it("returns true if it finds rspec", function() {
+  it("returns .problems == [] if it finds rspec", function() {
     function whichStub() {
       whichArgs = arguments;
       return true;
     }
-    var verifyEnv = buildVerifyEnv(whichStub, consoleStub);
+    var verifyEnv = buildVerifyEnv(whichStub);
     var result = verifyEnv();
     assert.equal(whichArgs[0], "rspec");
-    assert.equal(result, true);
+    assert.deepEqual(result.problems, []);
   });
 
   it("returns false and prints if it cannot find rspec", function() {
@@ -34,11 +27,12 @@ describe("#verifyEnv", function() {
       whichArgs = arguments;
       return false;
     }
-    var verifyEnv = buildVerifyEnv(whichStub, consoleStub);
+    var verifyEnv = buildVerifyEnv(whichStub);
     var result = verifyEnv();
     assert.equal(whichArgs[0], "rspec");
-    assert.equal(logArgs[0], "Do you see rspec when you type `which rspec`?");
-    assert.equal(result, false);
+    var expectedProblems = [ "Ack! I cannot rspec without `rspec`",
+                             "Do you see rspec when you type `which rspec`?" ];
+    assert.deepEqual(result.problems, expectedProblems);
   });
 
 });
