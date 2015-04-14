@@ -69,9 +69,9 @@ describe("reporter", function() {
 
     var expectedArgs = [
       [ "File Name and Line Number", "Result", "Tries" ],
-      [ "./spec/flakey_spec.rb:2", "FAILURE", 1 ],
+      [ "./spec/always_fail_spec.rb:2", "PENDING", 0 ],
       [ "./spec/always_pass_spec.rb:2", "PASSED", 1 ],
-      [ "./spec/always_fail_spec.rb:2", "PENDING", 0 ]
+      [ "./spec/flakey_spec.rb:2", "FAILURE", 1 ]
     ];
 
     report({
