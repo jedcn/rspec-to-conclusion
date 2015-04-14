@@ -2,8 +2,8 @@
 var buildReport = require("./lib/report").buildReport,
     buildRSpecToConclusion = require("./lib/rspec-to-conclusion").buildRSpecToConclusion,
     buildRunAndSummarize = require("./lib/run-and-summarize").buildRunAndSummarize,
-    buildVerifyArgs = require("./lib/rspec-verify-args").buildVerifyArgs,
-    buildVerifyEnv = require("./lib/rspec-verify-env").buildVerifyEnv,
+    buildVerifyArgs = require("./lib/verify-args").buildVerifyArgs,
+    buildVerifyEnv = require("./lib/verify-env").buildVerifyEnv,
     minimist = require("minimist"),
     shelljs = require("shelljs"),
     table = require("gfm-table");
