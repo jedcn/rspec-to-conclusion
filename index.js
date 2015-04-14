@@ -1,7 +1,7 @@
 
-var buildReport = require("./lib/rspec-reporter").buildReport,
+var buildReport = require("./lib/report").buildReport,
     buildRSpecToConclusion = require("./lib/rspec-to-conclusion").buildRSpecToConclusion,
-    buildRunAndSummarize = require("./lib/rspec-run-and-summarize").buildRunAndSummarize,
+    buildRunAndSummarize = require("./lib/run-and-summarize").buildRunAndSummarize,
     buildVerifyArgs = require("./lib/rspec-verify-args").buildVerifyArgs,
     buildVerifyEnv = require("./lib/rspec-verify-env").buildVerifyEnv,
     minimist = require("minimist"),
@@ -14,8 +14,8 @@ module.exports.report = buildReport(table, console);
 module.exports.verifyEnv = buildVerifyEnv(shelljs.which, console);
 
 var runDebug = require("debug")("run");
-var rspecRunner = require("./lib/rspec-runner").buildRun(shelljs.exec, require, runDebug);
-var runAndSummarize = buildRunAndSummarize(rspecRunner);
+var run = require("./lib/run").buildRun(shelljs.exec, require, runDebug);
+var runAndSummarize = buildRunAndSummarize(run);
 
 module.exports.rspecToConclusion = buildRSpecToConclusion(runAndSummarize);
 

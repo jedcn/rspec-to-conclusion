@@ -1,7 +1,7 @@
 var assert = require("assert"),
-    buildReport = require("../lib/rspec-reporter").buildReport;
+    buildReport = require("../lib/report").buildReport;
 
-describe("reporter", function() {
+describe("report", function() {
 
   "use strict";
 

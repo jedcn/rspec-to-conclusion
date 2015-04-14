@@ -1,5 +1,5 @@
 var assert = require("assert"),
-    testModule = require("../lib/rspec-analysis");
+    testModule = require("../lib/analysis");
 
 var resultsToProgress = testModule.resultsToProgress,
     mergeProgress = testModule.mergeProgress;
