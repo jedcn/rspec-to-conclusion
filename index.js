@@ -1,7 +1,7 @@
 // buildXXX methods: creates XXX by injecting dependencies:
 var buildReport = require("./lib/report").buildReport,
     buildRSpecToConclusion = require("./lib/rspec-to-conclusion").buildRSpecToConclusion,
-    buildRunAndMerge = require("./lib/run-and-summarize").buildRunAndMerge,
+    buildRunAndMerge = require("./lib/run-and-merge").buildRunAndMerge,
     buildVerifyArgs = require("./lib/verify-args").buildVerifyArgs,
     buildVerifyEnv = require("./lib/verify-env").buildVerifyEnv;
 
