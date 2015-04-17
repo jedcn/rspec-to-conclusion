@@ -1,9 +1,10 @@
-var assert = require("assert"),
-    indexRequire = require("../index");
+var assert = require("assert");
 
 describe("index.js", function() {
 
   "use strict";
+
+  var indexRequire = require("../index");
 
   it("exports exit", function() {
     assert.equal(typeof indexRequire.exit, "function");
