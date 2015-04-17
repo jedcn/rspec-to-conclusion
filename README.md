@@ -1,10 +1,10 @@
 # rspec-to-conclusion
 
-[![Code Climate](https://codeclimate.com/github/jedcn/rspec-to-conclusion/badges/gpa.svg)](https://codeclimate.com/github/jedcn/rspec-to-conclusion) [![Test Coverage](https://codeclimate.com/github/jedcn/rspec-to-conclusion/badges/coverage.svg)](https://codeclimate.com/github/jedcn/rspec-to-conclusion)
+[![Circle CI](https://circleci.com/gh/jedcn/rspec-to-conclusion.svg?style=svg)](https://circleci.com/gh/jedcn/rspec-to-conclusion) [![Code Climate](https://codeclimate.com/github/jedcn/rspec-to-conclusion/badges/gpa.svg)](https://codeclimate.com/github/jedcn/rspec-to-conclusion) [![Test Coverage](https://codeclimate.com/github/jedcn/rspec-to-conclusion/badges/coverage.svg)](https://codeclimate.com/github/jedcn/rspec-to-conclusion)
 
 Node based cli for running rspec to conclusion
 
-[![Circle CI](https://circleci.com/gh/jedcn/rspec-to-conclusion.svg?style=svg)](https://circleci.com/gh/jedcn/rspec-to-conclusion)
+
 
 ## Background
 
