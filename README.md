@@ -1,8 +1,6 @@
 # rspec-to-conclusion
 
-[![Code Climate](https://codeclimate.com/github/jedcn/rspec-to-conclusion/badges/gpa.svg)](https://codeclimate.com/github/jedcn/rspec-to-conclusion)
-
-[![Coverage Status](https://coveralls.io/repos/jedcn/rspec-to-conclusion/badge.svg?branch=master)](https://coveralls.io/r/jedcn/rspec-to-conclusion?branch=master)
+[![Code Climate](https://codeclimate.com/github/jedcn/rspec-to-conclusion/badges/gpa.svg)](https://codeclimate.com/github/jedcn/rspec-to-conclusion) [![Test Coverage](https://codeclimate.com/github/jedcn/rspec-to-conclusion/badges/coverage.svg)](https://codeclimate.com/github/jedcn/rspec-to-conclusion)
 
 Node based cli for running rspec to conclusion
 
