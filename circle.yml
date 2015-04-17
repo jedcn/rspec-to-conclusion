@@ -1,1 +1,2 @@
-post: "npm run-script send_coverage_to_coveralls"
+test:
+  post: "npm run-script send_coverage_to_coveralls"
