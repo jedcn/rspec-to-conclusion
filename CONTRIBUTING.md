@@ -9,15 +9,15 @@ https://circleci.com/gh/jedcn/rspec-to-conclusion
 
 It's a standard setup, with one tweak:
 
-The environment variable COVERALLS_REPO_TOKEN was manually set:
+The environment variable CODECLIMATE_REPO_TOKEN was manually set:
 
 https://circleci.com/gh/jedcn/rspec-to-conclusion/edit#env-vars
 
 ## Coverage
 
-Coverage Reporting is provided by coveralls.io:
+Coverage Reporting is provided by codeclimate:
 
-https://coveralls.io/r/jedcn/rspec-to-conclusion
+https://codeclimate.com/github/jedcn/rspec-to-conclusion/
 
 ## Linting
 
