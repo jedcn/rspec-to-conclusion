@@ -1,6 +1,34 @@
 
 # rspec-to-conclusion
 
+## CI
+
+Continuous Integration is provided by circleci:
+
+https://circleci.com/gh/jedcn/rspec-to-conclusion
+
+It's a standard setup, with one tweak:
+
+The environment variable COVERALLS_REPO_TOKEN was manually set:
+
+https://circleci.com/gh/jedcn/rspec-to-conclusion/edit#env-vars
+
+## Coverage
+
+Coverage Reporting is provided by coveralls.io:
+
+https://coveralls.io/r/jedcn/rspec-to-conclusion
+
+## Linting
+
+Is availablle via eslint, and runs with each `npm test`
+
+## Code Analysis
+
+Code Analysis is provided by code climate:
+
+https://codeclimate.com/github/jedcn/rspec-to-conclusion/
+
 ## Data Structures
 
 This is a small project, and there are only two JSON structures to
