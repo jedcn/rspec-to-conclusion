@@ -4,8 +4,6 @@
 
 Node based cli for running rspec to conclusion
 
-
-
 ## Background
 
 Coming Soon
@@ -70,12 +68,14 @@ Any environment variables will be passed onto rspec:
 
 This package has not yet been published.
 
-It should be publish shortly. If you'd like to try to use a very early
-version of it, you could:
+It should be publish within one week. If you'd like to try to use an
+early version of it, you could use `npm link`
 
     git clone https://github.com/jedcn/rspec-to-conclusion.git
-    git checkout -b in-progress origin/in-progress
+    cd rspec-to-conclusion
     npm link
+    cd /to/your/favorite/ruby-project
+    rspec-to-conclusion
 
 ### Miscellaneous
 
