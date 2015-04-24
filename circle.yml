@@ -1,0 +1,3 @@
+test:
+  post:
+    - "npm run-script send_coverage_to_codeclimate"
