@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+require("../global");
+
+var verifiedArgs = verifyArgs(process.argv),
+    verifiedEnv = verifyEnv(verifyArgs),
+    problems = verifiedEnv.problems;
+
+if (problems.length > 0) {
+  console.log("We've got some problem(s):");
+  console.log("");
+  console.log("  " + problems.join("\n  "));
+  console.log("");
+  console.log("Usage: rspec-to-conclusion [--tries 10] [spec target(s)]");
+  console.log("  Options");
+  console.log("    --tries N      How many times should we run the specs?");
+  console.log("                   (default: 5)");
+  console.log("    spec_targets   Which specs should be run?");
+  console.log("                   (default: spec)");
+  console.log("");
+  exit(1);
+}
+
+report(rspecToConclusion(verifiedArgs));
