@@ -1,5 +1,5 @@
 var assert = require("assert"),
-    buildReport = require("../lib/report").buildReport;
+    buildReport = require("../lib/report");
 
 describe("report", function() {
 

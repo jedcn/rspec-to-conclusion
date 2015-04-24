@@ -1,5 +1,5 @@
 var assert = require("assert"),
-    buildVerifyEnv = require("../lib/verify-env").buildVerifyEnv;
+    buildVerifyEnv = require("../lib/verify-env");
 
 describe("#verifyEnv", function() {
 

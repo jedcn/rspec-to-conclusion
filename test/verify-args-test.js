@@ -1,6 +1,6 @@
 var assert = require("assert"),
     parseArgs = require("../lib/parse-args"),
-    buildVerifyArgs = require("../lib/verify-args").buildVerifyArgs;
+    buildVerifyArgs = require("../lib/verify-args");
 
 describe("#verifyEnv", function() {
 

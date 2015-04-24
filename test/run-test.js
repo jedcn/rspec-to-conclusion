@@ -1,5 +1,5 @@
 var assert = require("assert"),
-    buildRun = require("../lib/run").buildRun;
+    buildRun = require("../lib/run");
 
 describe("#run", function() {
 

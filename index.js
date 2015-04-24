@@ -1,9 +1,9 @@
 // buildXXX methods: creates XXX by injecting dependencies:
-var buildReport = require("./lib/report").buildReport,
-    buildRSpecToConclusion = require("./lib/rspec-to-conclusion").buildRSpecToConclusion,
-    buildRunAndMerge = require("./lib/run-and-merge").buildRunAndMerge,
-    buildVerifyArgs = require("./lib/verify-args").buildVerifyArgs,
-    buildVerifyEnv = require("./lib/verify-env").buildVerifyEnv;
+var buildReport = require("./lib/report"),
+    buildRSpecToConclusion = require("./lib/rspec-to-conclusion"),
+    buildRunAndMerge = require("./lib/run-and-merge"),
+    buildVerifyArgs = require("./lib/verify-args"),
+    buildVerifyEnv = require("./lib/verify-env");
 
 // External dependencies:
 var shelljs = require("shelljs"),
@@ -16,7 +16,7 @@ var resultsToProgress = require("./lib/analysis").resultsToProgress,
     mergeProgress = require("./lib/analysis").mergeProgress,
     parseArgs = require("./lib/parse-args");
 
-var run = require("./lib/run").buildRun(shelljs.exec, require, runDebug);
+var run = require("./lib/run")(shelljs.exec, require, runDebug);
 var runAndMerge = buildRunAndMerge(run, resultsToProgress, mergeProgress);
 
 // Exports for explicit use in ./bin/rspec-to-conclusion:
