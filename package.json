@@ -1,7 +1,7 @@
 {
   "name": "rspec-to-conclusion",
   "version": "1.0.0",
-  "description": "cli for running rspec to conclusion",
+  "description": "Command line utility for running rspec to conclusion",
   "bin": {
     "rspec-to-conclusion": "./bin/rspec-to-conclusion"
   },
