@@ -65,8 +65,8 @@ If you run `rspec-to-conclusion` it will run all of the specs in your
 ```
 | File Name and Line Number      | Result  | Tries |
 | ------------------------------ | ------- | ----- |
-| ./spec/always_fail_spec.rb:2   | PENDING | 0     |
-| ./spec/always_fail_spec.rb:6   | PENDING | 0     |
+| ./spec/always_pend_spec.rb:2   | PENDING | 0     |
+| ./spec/always_pend_spec.rb:6   | PENDING | 0     |
 | ./spec/always_pass_spec.rb:2   | PASSED  | 1     |
 | ./spec/always_pass_spec.rb:6   | PASSED  | 1     |
 | ./spec/flakey_spec.rb:2        | PASSED  | 1     |
@@ -75,7 +75,7 @@ If you run `rspec-to-conclusion` it will run all of the specs in your
 | ./spec/really_flakey_spec.rb:6 | FAILURE | 2     |
 ```
 
-Finally, the status code returned by rspec-to-conclusion will be the
+Finally, the status code returned by `rspec-to-conclusion` will be the
 number of failing specs. So-- if they all passed-- it'll be zero and
 signal success.
 
